@@ -7,3 +7,6 @@ And feel free to join me.
 
 # Usage
 You need to have installed MongoDB on your machine.
+#
+If you run into any problem, or If You're first time User of MongoDB, Ask me anytime at 
+https://www.instagram.com/shahrukhjadara
