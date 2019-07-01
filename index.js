@@ -15,6 +15,7 @@ app.listen(process.env.PORT||3000, function(){
   console.log("App is Launched");
 });
 var Blog = require("./models/blogs");
+var seedDB = require("./seeds")
 
 app.get("/blogs", function(req, res){
   Blog.find({}, function(error, blogs){
@@ -42,7 +43,7 @@ app.post("/blogs", function(req, res){
 });
 
 app.get("/blogs/:id", function(req, res){
-  Blog.findById(req.params.id, function(error, foundBlog){
+  Blog.findById(req.params.id).populate("comments").exec(function(error, foundBlog){
     if(error){
       res.redirect("/blogs");
     }
