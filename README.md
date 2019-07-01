@@ -1,5 +1,5 @@
 # blogApp
-A Blog App From Scratch
+A Blog App From Scratch Using Libraries like Semantic-UI and based on Express Framework
 #
 Some Functions are not working yet, or are disabled intentionally.
 If you're here to help, you're welcome.
