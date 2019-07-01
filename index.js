@@ -14,13 +14,7 @@ app.use(expressSanitizer());
 app.listen(process.env.PORT||3000, function(){
   console.log("App is Launched");
 });
-var blogSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  body: String,
-  created: {type: Date, default: Date.now}
-});
-var Blog = mongoose.model("Blog", blogSchema);
+var Blog = require("./models/blogs");
 
 app.get("/blogs", function(req, res){
   Blog.find({}, function(error, blogs){
