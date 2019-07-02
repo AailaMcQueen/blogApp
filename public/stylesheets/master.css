@@ -1,0 +1,19 @@
+
+.container.main{
+  margin-top: 5.23em;
+}
+.delete{
+  display: inline;
+}
+.description{
+  padding-bottom: 10px;
+  font-size: 1.23em;
+}
+.comments{
+  padding: 10px 0;
+  display: none;
+  transition: display 0.7s;
+}
+.commentBar{
+  display: block;
+}

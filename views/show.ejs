@@ -18,6 +18,16 @@
   <form class="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="post">
   <button class="ui red basic button">Delete</button>
 </form>
+<button type="button" class="ui blue button" id="comment"><i class="comment alternate icon"></i>Comment</button>
+<div class="item comments">
+  <form class="ui form" action="index.html" method="post">
+    <div class="ui fluid action input">
+      <input type="text" placeholder="Your Name">
+      <input type="text" placeholder="Say it....">
+      <div class="ui blue button"><i class="telegram plane icon"></i>Comment</div>
+    </div>
+  </form>
+</div>
 <% blog.comments.forEach(function(comment){%>
   <p><strong><%=comment.author%></strong> : <%=comment.text%></p>
 <%})%>

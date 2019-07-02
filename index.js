@@ -8,7 +8,7 @@ var bodyParser= require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 mongoose.set('useFindAndModify', false);
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 app.listen(process.env.PORT||3000, function(){
