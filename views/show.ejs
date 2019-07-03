@@ -20,16 +20,24 @@
 </form>
 <button type="button" class="ui blue button" id="comment"><i class="comment alternate icon"></i>Comment</button>
 <div class="item comments">
-  <form class="ui form" action="index.html" method="post">
+  <form class="ui form" action="/blogs/<%=blog._id%>/comments" method="post">
     <div class="ui fluid action input">
-      <input type="text" placeholder="Your Name">
-      <input type="text" placeholder="Say it....">
-      <div class="ui blue button"><i class="telegram plane icon"></i>Comment</div>
+      <input type="text" placeholder="Your Name" name="comment[author]">
+      <input type="text" placeholder="Say it...." name="comment[text]">
+      <button class="ui blue button" type="submit"><i class="telegram plane icon"></i>Comment</button>
     </div>
   </form>
 </div>
-<% blog.comments.forEach(function(comment){%>
-  <p><strong><%=comment.author%></strong> : <%=comment.text%></p>
-<%})%>
+<div class="ui celled list">
+  <% blog.comments.forEach(function(comment){%>
+    <div class="item">
+      <div class="content">
+         <img class="ui avatar image" src="/img/icons8-male-user-filled-50.jpg">
+        <div class="header"><%=comment.author%></div>
+        <%=comment.text%>
+      </div>
+    </div>
+  <%})%>
+  </div>
 </div>
   <% include ./partials/footer %>

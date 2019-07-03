@@ -15,7 +15,7 @@ app.listen(process.env.PORT||3000, function(){
   console.log("App is Launched");
 });
 var Blog = require("./models/blogs");
-var seedDB = require("./seeds")
+var Comment= require("./models/comments");
 
 app.get("/blogs", function(req, res){
   Blog.find({}, function(error, blogs){
@@ -87,6 +87,26 @@ app.delete("/blogs/:id", function(req, res){
   })
 });
 
+app.post("/blogs/:id/comments", function(req, res){
+  Blog.findById(req.params.id, function(err, blog){
+    if(err){
+      console.log(err);
+      res.redirect("/blogs");
+    }
+    else{
+      Comment.create(req.body.comment, function(error, comment){
+        if(error){
+          console.log(error);
+        }
+        else{
+          blog.comments.push(comment);
+          blog.save();
+          res.redirect("/blogs/"+blog._id);
+        }
+      })
+    }
+  })
+})
 
 app.get("/", function(req, res){
   res.redirect("/blogs");
