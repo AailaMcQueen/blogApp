@@ -17,3 +17,21 @@
 .commentBar{
   display: block;
 }
+#icon{
+  display: none;
+  font-size: 2em;
+  padding: 15px;
+  position: absolute;
+  right: 15px;;
+}
+
+@media screen and (max-width : 767px) {
+  .ui.fixed.massive.stackable.menu a:not(:first-child) {display: none;}
+  .ui.fixed.massive.stackable.menu div{display: none;}
+  #icon {display: block;}
+}
+@media screen and (max-width : 767px) {
+  .ui.fixed.massive.stackable.menu.show a:not(:first-child) {display: block;}
+  .ui.fixed.massive.stackable.menu.show div{display: block;}
+  #icon {display: block;}
+}
