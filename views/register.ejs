@@ -1,0 +1,25 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+  <div class="ui huge header">
+    Get Started!
+  </div>
+  <form class="ui form" action="/register" method="post">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Username">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input placeholder="Password" type="password" name="password">
+    </div>
+    <div class="ui buttons">
+      <button type="button" class="ui button"><a href="/blogs">Cancel</a></button>
+      <div class="or"></div>
+      <button type="submit" class="ui positive button">Sign Up!</button>
+    </div>
+    <!-- <div class="description" style="padding-top: 5px;">
+      <strong>Tip: </strong>You can use HTML tags like strong and p and different styling to style your text.
+    </div> -->
+  </form>
+</div>
+<% include ./partials/footer %>

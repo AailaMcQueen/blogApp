@@ -20,6 +20,24 @@
         New Post
       </a>
       <div class="right menu">
+      <% if(!currentUser){%>
+          <div class="item">
+              <a class="ui blue basic button" href="/login" style=" width: 100%;">Login</a>
+          </div>
+
+          <div class="item">
+              <a class="ui primary button" href="/register" style="color: white; width: 100%;">Sign Up</a>
+          </div>
+        <%}
+        else{%>
+          <div class="item">
+            Signed In As: <%=currentUser.username%>
+          </div>
+          <div class="item">
+              <a class="ui red basic button" href="/logout" style=" width: 100%;">Log Out</a>
+          </div>
+      <% };%>
+
         <!-- <div class="ui dropdown item">
           Language <i class="dropdown icon"></i>
           <div class="menu">
@@ -28,12 +46,5 @@
             <a class="item">Spanish</a>
           </div>
         </div> -->
-        <div class="item">
-            <div class="ui blue basic button">Login</div>
-        </div>
-
-        <div class="item">
-            <div class="ui primary button">Sign Up</div>
-        </div>
       </div>
     </div>

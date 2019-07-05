@@ -3,6 +3,12 @@ var methodOverride = require("method-override");
 var app = express();
 var expressSanitizer = require("express-sanitizer");
 var mongoose= require("mongoose");
+var passport = require('passport'),
+localStrategy = require('passport-local');
+var blogRoutes = require("./routes/blogs"),
+commentRoutes =require("./routes/comments"),
+indexRoutes = require("./routes/index");
+
 mongoose.connect("mongodb://127.0.0.1:27017/blogApp", {useNewUrlParser: true});
 var bodyParser= require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,43 +21,28 @@ app.listen(process.env.PORT||3000, function(){
   console.log("App is Launched");
 });
 var Blog = require("./models/blogs");
-var Comment= require("./models/comments");
+var Comment= require("./models/comments"),
+User = require("./models/users");
 
-app.get("/blogs", function(req, res){
-  Blog.find({}, function(error, blogs){
-    if(error){
-      console.log(error);
-    }
-    else {
-      res.render("index",{ blogs: blogs});
-    }
-  });
+//passport config
+app.use(require("express-session")({
+  secret: "Jadara",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
 });
-app.get("/blogs/new", function(req, res){
-  res.render("new");
-});
-app.post("/blogs", function(req, res){
-  req.body.blog.body = req.sanitize(req.body.blog.body);
-  Blog.create(req.body.blog, function(error, newBlog){
-    if(error){
-      res.render("/blogs/new");
-    }
-    else{
-      res.redirect("/blogs");
-    }
-  })
-});
+app.use(blogRoutes);
+app.use(commentRoutes);
+app.use(indexRoutes);
 
-app.get("/blogs/:id", function(req, res){
-  Blog.findById(req.params.id).populate("comments").exec(function(error, foundBlog){
-    if(error){
-      res.redirect("/blogs");
-    }
-    else {
-      res.render("show", {blog: foundBlog});
-    }
-  })
-});
 
 app.get("/blogs/:id/edit", function(req, res){
   Blog.findById(req.params.id, function(error, foundBlog){
@@ -87,27 +78,8 @@ app.delete("/blogs/:id", function(req, res){
   })
 });
 
-app.post("/blogs/:id/comments", function(req, res){
-  Blog.findById(req.params.id, function(err, blog){
-    if(err){
-      console.log(err);
-      res.redirect("/blogs");
-    }
-    else{
-      Comment.create(req.body.comment, function(error, comment){
-        if(error){
-          console.log(error);
-        }
-        else{
-          blog.comments.push(comment);
-          blog.save();
-          res.redirect("/blogs/"+blog._id);
-        }
-      })
-    }
-  })
-})
-
 app.get("/", function(req, res){
   res.redirect("/blogs");
 });
+
+//auth routes
