@@ -5,7 +5,6 @@ var Comment= require("../models/comments"),
 User = require("../models/users");
 
 router.get("/blogs", function(req, res){
-
   Blog.find({}, function(error, blogs){
     if(error){
       console.log(error);
@@ -15,10 +14,15 @@ router.get("/blogs", function(req, res){
     }
   });
 });
-router.get("/blogs/new", function(req, res){
+router.get("/blogs/new", isLoggedIn, function(req, res){
   res.render("new");
 });
-router.post("/blogs", function(req, res){
+router.post("/blogs", isLoggedIn, function(req, res){
+  var author = {
+    id: req.user._id,
+    username: req.user.username
+  };
+  req.body.blog.author = author;
   req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.create(req.body.blog, function(error, newBlog){
     if(error){

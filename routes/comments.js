@@ -16,6 +16,9 @@ router.post("/blogs/:id/comments", isLoggedIn, function(req, res){
           console.log(error);
         }
         else{
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          comment.save();
           blog.comments.push(comment);
           blog.save();
           res.redirect("/blogs/"+blog._id);

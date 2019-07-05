@@ -12,6 +12,9 @@
       <div class="description">
         <p><%=blog.body%></p>
       </div>
+      <div class="description">
+        <p><em>Uploaded By: <strong><%=blog.author.username%></strong></em></p>
+      </div>
     </div>
   </div>
   <a class="ui orange basic button " href="/blogs/<%=blog._id%>/edit">Edit</a>
@@ -22,7 +25,6 @@
 <div class="item comments">
   <form class="ui form" action="/blogs/<%=blog._id%>/comments" method="post">
     <div class="ui fluid action input">
-      <input type="text" placeholder="Your Name" name="comment[author]">
       <input type="text" placeholder="Say it...." name="comment[text]">
       <button class="ui blue button" type="submit"><i class="telegram plane icon"></i>Comment</button>
     </div>
@@ -33,8 +35,10 @@
     <div class="item">
       <div class="content">
          <img class="ui avatar image" src="/img/icons8-male-user-filled-50.jpg">
-        <div class="header"><%=comment.author%></div>
-        <%=comment.text%>
+        <div class="header"><%=comment.author.username%></div>
+        <div class="">
+          <p><%=comment.text%></p>
+        </div>
       </div>
     </div>
   <%})%>
