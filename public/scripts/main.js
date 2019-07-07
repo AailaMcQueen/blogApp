@@ -6,3 +6,9 @@ $("#icon").click(function(){
   $(".ui.fixed.massive.stackable.menu").toggleClass("show");
   $("")
 });
+$("#commentOption").click(function(){
+	$(".commentOptions").slideToggle();
+});
+$("#postOption").click(function(){
+	$(".postOptions").slideToggle();
+});

@@ -28,6 +28,30 @@ p{
   right: 15px;;
 }
 
+.commentOptions{
+  display: none;
+}
+#commentOption{
+  text-align: right;
+  float: right;
+  font-size: 1.5em;
+}
+#commentOption:hover{
+  cursor: pointer;
+}
+.postOptions{
+  display: none;
+  padding-top: 5px;
+}
+#postOption{
+  text-align: right;
+  float: right;
+  font-size: 1.5em;
+}
+#postOption:hover{
+  cursor: pointer;
+}
+
 @media screen and (max-width : 767px) {
   .ui.fixed.massive.stackable.menu a:not(:first-child) {display: none;}
   .ui.fixed.massive.stackable.menu div{display: none;}

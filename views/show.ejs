@@ -17,14 +17,18 @@
       </div>
     </div>
   </div>
+<button type="button" class="ui blue button" id="comment"><i class="comment alternate icon"></i>Comment</button>
+<a href="#" class="ui blue button"><i class="share icon"></i>Share</a>
+<i class="ellipsis horizontal icon" id="postOption"></i>
+<div class="postOptions">
+  <button class="ui basic blue button" style="color: rgb(0, 0, 0);"><i class="flag icon"></i>Report</button>
   <%if(currentUser && blog.author.id.equals(currentUser._id)){%>
   <a class="ui orange basic button " href="/blogs/<%=blog._id%>/edit">Edit</a>
   <form class="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="post">
   <button class="ui red basic button">Delete</button>
 </form>
-  <%}%>
-
-<button type="button" class="ui blue button" id="comment"><i class="comment alternate icon"></i>Comment</button>
+<%}%>
+</div>
 <div class="item comments">
   <form class="ui form" action="/blogs/<%=blog._id%>/comments" method="post">
     <div class="ui fluid action input">
@@ -40,7 +44,7 @@
          
         <div class="header"><i class="user icon"></i><%=comment.author.username%><a href="" class=""></a></div>
         <div class="">
-          <p><%=comment.text%></p>
+          <p><%=comment.text%><i class="ellipsis horizontal icon" id="commentOption"></i></p>
           <span class="commentOptions">
           <button class="circular ui icon button" style="color: rgb(0, 0, 0);"><i class="flag icon"></i>Report</button>
           <%if(currentUser && comment.author.id.equals(currentUser._id)){%>
