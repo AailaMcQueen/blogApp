@@ -27,6 +27,61 @@ router.post("/blogs/:id/comments", isLoggedIn, function(req, res){
     }
   })
 });
+
+router.get("/blogs/:id/comments/:comment_id/edit", commentOwns, function(req, res){
+  Comment.findById(req.params.comment_id, function(error, foundComment){
+    if(error){
+      res.redirect("back");
+    }
+    else{
+     res.render("editComment", {blog_id: req.params.id, comment: foundComment}); 
+    }
+  })
+  
+});
+
+router.put("/blogs/:id/comments/:comment_id",commentOwns, function(req, res){
+  Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(error, updateComment){
+    if(error){
+      res.redirect("back");
+    }
+    else{
+      res.redirect("/blogs/"+req.params.id)
+    }
+  })
+});
+
+router.delete("/blogs/:id/comments/:comment_id", commentOwns, function(req, res){
+  Comment.findByIdAndRemove(req.params.comment_id, function(error){
+    if(error){
+       res.redirect("/blogs/"+req.params.id);
+    }
+    else{
+      res.redirect("/blogs"+req.params.id);
+    }
+  })
+});
+
+function commentOwns(req, res, next){
+  if(req.isAuthenticated()){
+    Comment.findById(req.params.comment_id, function(error, foundComment){
+    if(error){
+      res.redirect("back");
+    }
+    else{
+      if(foundComment.author.id.equals(req.user._id)){
+        next();
+      }
+      else{
+      res.redirect("back");
+      };
+    };
+});
+}
+else{
+  res.redirect("back");
+}};
+
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){
     return next();

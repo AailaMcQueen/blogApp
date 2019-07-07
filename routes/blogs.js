@@ -51,4 +51,55 @@ function isLoggedIn(req, res, next){
   res.redirect("/login");
 };
 
+router.get("/blogs/:id/edit",whoOwns, function(req, res){
+
+    Blog.findById(req.params.id, function(error, foundBlog){
+        res.render("edit", {blog: foundBlog});
+    
+    });
+  });
+
+router.put("/blogs/:id",whoOwns, function(req, res){
+  req.body.blog.body = req.sanitize(req.body.blog.body);
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(error, updatedBlog){
+    if(error){
+      res.redirect("/blogs");
+    }
+    else{
+      res.redirect("/blogs/"+req.params.id)
+    }
+  })
+});
+
+router.delete("/blogs/:id",whoOwns, function(req, res){
+  Blog.findByIdAndRemove(req.params.id, function(error){
+    if(error){
+       res.redirect("/blogs");
+    }
+    else{
+      res.redirect("/blogs");
+    }
+  })
+});
+function whoOwns(req, res, next){
+  if(req.isAuthenticated()){
+    Blog.findById(req.params.id, function(error, foundBlog){
+    if(error){
+      res.redirect("back");
+    }
+    else{
+      if(foundBlog.author.id.equals(req.user._id)){
+        next();
+      }
+      else{
+      res.redirect("back");
+      };
+    };
+});
+}
+else{
+  res.redirect("back");
+}};
+
+
 module.exports = router;

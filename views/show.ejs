@@ -17,10 +17,13 @@
       </div>
     </div>
   </div>
+  <%if(currentUser && blog.author.id.equals(currentUser._id)){%>
   <a class="ui orange basic button " href="/blogs/<%=blog._id%>/edit">Edit</a>
   <form class="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="post">
   <button class="ui red basic button">Delete</button>
 </form>
+  <%}%>
+
 <button type="button" class="ui blue button" id="comment"><i class="comment alternate icon"></i>Comment</button>
 <div class="item comments">
   <form class="ui form" action="/blogs/<%=blog._id%>/comments" method="post">
@@ -34,10 +37,19 @@
   <% blog.comments.forEach(function(comment){%>
     <div class="item">
       <div class="content">
-         <img class="ui avatar image" src="/img/icons8-male-user-filled-50.jpg">
-        <div class="header"><%=comment.author.username%></div>
+         
+        <div class="header"><i class="user icon"></i><%=comment.author.username%><a href="" class=""></a></div>
         <div class="">
           <p><%=comment.text%></p>
+          <span class="commentOptions">
+          <button class="circular ui icon button" style="color: rgb(0, 0, 0);"><i class="flag icon"></i>Report</button>
+          <%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+          <button class="circular ui icon button"><a href="/blogs/<%=blog._id%>/comments/<%=comment._id%>/edit" style="color: rgb(0, 0, 0);"><i class="edit outline icon"></i>Edit</a></button>
+          <form class="delete" action="/blogs/<%=blog._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
+            <button class="ui circular icon button" style="color: rgb(0, 0, 0);"><i class="trash icon"></i>Delete</button>
+          </form>
+          <%}%>
+          </span>
         </div>
       </div>
     </div>

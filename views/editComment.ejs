@@ -1,0 +1,10 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+<form class="ui form" action="/blogs/<%=blog_id%>/comments/<%=comment._id%>?_method=put" method="post">
+    <div class="ui fluid action input">
+      <input type="text" value="<%=comment.text%>" name="comment[text]">
+      <button class="ui blue button" type="submit"><i class="telegram plane icon"></i>Comment</button>
+    </div>
+  </form>
+  </div>
+<% include ./partials/footer %>

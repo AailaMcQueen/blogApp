@@ -9,6 +9,9 @@
   padding-bottom: 10px;
   font-size: 1.23em;
 }
+p{
+  margin-bottom: 5px;
+}
 .comments{
   padding: 10px 0;
   display: none;
