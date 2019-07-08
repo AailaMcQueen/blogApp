@@ -10,3 +10,5 @@ You need to have installed MongoDB on your machine.
 #
 If you run into any problem, or If You're first time User of MongoDB, Ask me anytime at 
 https://www.instagram.com/shahrukhjadara
+
+Note: A few flash messages are not working, and I'll get to that soon!
