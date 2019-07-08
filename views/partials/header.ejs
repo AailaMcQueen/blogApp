@@ -48,3 +48,25 @@
         </div> -->
       </div>
     </div>
+<% if(error && error.length>0){%>
+<div class="ui negative message container segment main text">
+  <div class="header">
+    <%=error%>
+  </div>
+</div>
+<%}%>
+<% if(success && success.length>0){%>
+<div class="ui positive message container segment main text">
+  <div class="header">
+    <%=success%>
+  </div>
+</div>
+<%}%>
+<% if(warning && warning.length>0){%>
+<div class="ui warning message container segment main text">
+  <div class="header">
+    <%=warning%>
+  </div>
+</div>
+<%}%>
+

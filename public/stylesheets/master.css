@@ -1,7 +1,7 @@
-
-.container.main{
-  margin-top: 5.23em;
+body{
+  padding-top: 5.23em;
 }
+
 .delete{
   display: inline;
 }

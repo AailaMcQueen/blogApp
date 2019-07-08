@@ -4,13 +4,15 @@ var app = express();
 var expressSanitizer = require("express-sanitizer");
 var mongoose= require("mongoose");
 var passport = require('passport'),
-localStrategy = require('passport-local');
+  flash=require("connect-flash"),
+  localStrategy = require('passport-local');
 var blogRoutes = require("./routes/blogs"),
 commentRoutes =require("./routes/comments"),
 indexRoutes = require("./routes/index");
 
 mongoose.connect("mongodb://127.0.0.1:27017/blogApp", {useNewUrlParser: true});
 var bodyParser= require("body-parser");
+app.use(flash());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 mongoose.set('useFindAndModify', false);
@@ -37,6 +39,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  res.locals.warning = req.flash("warning");
   next();
 });
 app.use(blogRoutes);
