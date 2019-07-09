@@ -14,10 +14,10 @@
       </a>
       <i class="bars icon" id="icon" ></i>
       <a class="item" href="/">
-        Home
+        <i class="home icon"></i>Home
       </a>
       <a class="item" href="/blogs/new">
-        New Post
+        <i class="edit icon"></i>New Post
       </a>
       <div class="right menu">
       <% if(!currentUser){%>
@@ -37,15 +37,7 @@
               <a class="ui red basic button" href="/logout" style=" width: 100%;">Log Out</a>
           </div>
       <% };%>
-
-        <!-- <div class="ui dropdown item">
-          Language <i class="dropdown icon"></i>
-          <div class="menu">
-            <a class="item">English</a>
-            <a class="item">Russian</a>
-            <a class="item">Spanish</a>
-          </div>
-        </div> -->
+        </div> 
       </div>
     </div>
 <% if(error && error.length>0){%>

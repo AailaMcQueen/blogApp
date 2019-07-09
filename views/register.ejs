@@ -25,9 +25,23 @@
       <div class="or"></div>
       <button type="submit" class="ui positive button">Sign Up!</button>
     </div>
-    <!-- <div class="description" style="padding-top: 5px;">
-      <strong>Tip: </strong>You can use HTML tags like strong and p and different styling to style your text.
-    </div> -->
   </form>
+  <ol class="ui list" style="padding-top: 10px;">
+    <p class="ui header"><i class="lightbulb icon"></i>Things to keep in mind:</p>
+    <li><strong>Username:</strong>
+      <ol>
+        <%rules.username.forEach(function(rule){%>
+          <li><%=rule%></li>
+        <%})%>
+      </ol>
+    </li>
+    <li><strong>Password:</strong>
+      <ol>
+        <%rules.password.forEach(function(rule){%>
+          <li><%=rule%></li>
+        <%})%>
+      </ol>
+    </li>
+  </ol>
 </div>
 <% include ./partials/footer %>

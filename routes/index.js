@@ -6,10 +6,14 @@ var Comment= require("../models/comments"),
 User = require("../models/users");
 var middleware = require("../middleware");
 
+var rules={
+  username: ["Username should contain 5-15 characters", "Username can only have lowercase alphanumeric characters and underscore"],
+  password: ["Password must be of atleast 8 characters", "Password must contain one Uppercase, one lowercase letter and one number"]
+};
 
 
 router.get("/register", function(req, res){
-  res.render("register");
+  res.render("register", {rules: rules});
 });
 
 router.post("/register", function(req, res){
