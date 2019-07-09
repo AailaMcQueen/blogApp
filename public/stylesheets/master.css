@@ -1,5 +1,6 @@
 body{
   padding-top: 5.23em;
+  transition: all 0.7s;
 }
 
 .delete{
@@ -15,7 +16,6 @@ p{
 .comments{
   padding: 10px 0;
   display: none;
-  transition: display 0.7s;
 }
 .commentBar{
   display: block;

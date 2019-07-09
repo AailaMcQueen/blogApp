@@ -31,6 +31,7 @@ router.post("/blogs",middleware.isLoggedIn, function(req, res){
       res.render("/blogs/new");
     }
     else{
+      req.flash("error", "Blog Posted!!");
       res.redirect("/blogs");
     }
   })
@@ -63,9 +64,11 @@ router.put("/blogs/:id",middleware.whoOwns, function(req, res){
   req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(error, updatedBlog){
     if(error){
+      req.flash("error", "Blog Not Found!!");
       res.redirect("/blogs");
     }
     else{
+      req.flash("error", "Blog Updated!!");
       res.redirect("/blogs/"+req.params.id)
     }
   })
@@ -74,9 +77,11 @@ router.put("/blogs/:id",middleware.whoOwns, function(req, res){
 router.delete("/blogs/:id",middleware.whoOwns, function(req, res){
   Blog.findByIdAndRemove(req.params.id, function(error){
     if(error){
+      req.flash("error", "Blog Not Found!!");
        res.redirect("/blogs");
     }
     else{
+      req.flash("error", "Blog Deleted!!");
       res.redirect("/blogs");
     }
   })
