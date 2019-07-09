@@ -6,19 +6,19 @@
   <form class="ui form" action="/register" method="post">
     <div class="field">
       <label>Your Name</label>
-      <input type="text" name="name" placeholder="Full Name">
+      <input type="text" name="name" placeholder="Full Name" required>
     </div>
     <div class="field">
       <label>E-Mail</label>
-      <input type="text" name="email" placeholder="E-Mail">
+      <input type="email" name="email" placeholder="E-Mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
     </div>
     <div class="field">
       <label>Username</label>
-      <input type="text" name="username" placeholder="Username">
+      <input type="text" name="username" placeholder="Username"  pattern="[a-z A-Z0-9\\_\\]+$" title="Username may only contain lowercase letters, underscore and numbers, and length should be 5 to 15 characters" required>
     </div>
     <div class="field">
       <label>Password</label>
-      <input placeholder="Password" type="password" name="password">
+      <input placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type="password" name="password" required>
     </div>
     <div class="ui buttons">
       <button type="button" class="ui button"><a href="/blogs">Cancel</a></button>
