@@ -12,3 +12,8 @@ $("#commentOption").click(function(){
 $("#postOption").click(function(){
 	$(".postOptions").slideToggle();
 });
+ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );

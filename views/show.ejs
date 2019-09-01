@@ -10,7 +10,7 @@
         <span><%=blog.created.toDateString()%></span>
       </div>
       <div class="description">
-        <p><%=blog.body%></p>
+        <p><%-blog.body%></p> 
       </div>
       <div class="description">
         <p><em>Uploaded By: <strong><%=blog.author.name%> @<%=blog.author.username%></strong></em></p>
@@ -41,7 +41,7 @@
   <% blog.comments.forEach(function(comment){%>
     <div class="item">
       <div class="content">
-         
+
         <div class="header"><i class="user icon"></i><%=comment.author.username%><a href="" class=""></a></div>
         <div class="">
           <p><%=comment.text%><i class="ellipsis horizontal icon" id="commentOption"></i></p>

@@ -13,7 +13,7 @@
               <span><%=blog.created.toDateString()%></span>
             </div>
             <div class="description">
-              <p><%= blog.body.substring(0, 123)%>.....</p>
+              <p><%- blog.body.substring(0, 123)%>.....</p>
             </div>
             <div class="extra">
               <a class="ui floated basic violet button" id="btn1" href="/blogs/<%=blog._id%>" id="details">Read More<i class="right chevron icon"></i></a>
@@ -26,6 +26,6 @@
     </div>
   </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 <% include ./partials/footer %>

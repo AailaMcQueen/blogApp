@@ -36,10 +36,10 @@ router.get("/blogs/:id/comments/:comment_id/edit",middleware.commentOwns, functi
       res.redirect("back");
     }
     else{
-     res.render("editComment", {blog_id: req.params.id, comment: foundComment}); 
+     res.render("editComment", {blog_id: req.params.id, comment: foundComment});
     }
   })
-  
+
 });
 
 router.put("/blogs/:id/comments/:comment_id",middleware.commentOwns, function(req, res){
