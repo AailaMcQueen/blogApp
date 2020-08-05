@@ -27,18 +27,57 @@ p{
   position: absolute;
   right: 15px;
 }
-#icon:hover{
-  cursor: pointer;
+
+.btn{
+  outline: none;
+  border: none;
+  background-color: inherit;
 }
+
+.comment{
+  font-size: 18px;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 0.5;
+}
+.comment div{
+  width: 50%;
+}
+
+.commentText{
+  padding: 7px;
+}
+
 .commentOptions{
+  text-align: end;
+}
+
+.commentOptions .icon{
+  font-size: 14px;
+}
+
+.btn:hover{
+  cursor: pointer;
+  /* font-size: 1.2em; */
+  -webkit-transition: ease-in-out;
+  -o-transition: ease-in-out;
+  transition: ease-in-out;
+  -webkit-transition-duration: 0.5s;
+       -o-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.btn span{
+  font-size: 14px;
   display: none;
 }
-#commentOption{
-  text-align: right;
-  float: right;
-  font-size: 1.5em;
+
+.btn:hover span{
+  display: inline-block;
 }
-#commentOption:hover{
+
+#icon:hover{
   cursor: pointer;
 }
 .postOptions{
@@ -58,6 +97,7 @@ p{
   .ui.fixed.massive.stackable.menu a:not(:first-child) {display: none;}
   .ui.fixed.massive.stackable.menu div:not(:first-child){display: none;}
   #icon {display: block;}
+  
 }
 @media screen and (max-width : 767px) {
   .ui.fixed.massive.stackable.menu.show a:not(:first-child) {display: block;}

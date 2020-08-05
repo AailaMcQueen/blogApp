@@ -2,7 +2,10 @@ var mongoose = require("mongoose");
 
 var blogSchema = new mongoose.Schema({
   title: String,
-  image: String,
+  image: {
+    type: String,
+    default: "https://soliloquywp.com/wp-content/uploads/2016/08/How-to-Set-a-Default-Featured-Image-in-WordPress.png"
+  },
   body: String,
   author: {
     id: {
@@ -12,7 +15,10 @@ var blogSchema = new mongoose.Schema({
     name: String,
     username: String
   },
-  created: {type: Date, default: Date.now},
+  created: {
+    type: Date, 
+    default: Date.now
+  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

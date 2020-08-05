@@ -5,6 +5,11 @@ var Comment= require("../models/comments"),
 User = require("../models/users");
 var middleware = require("../middleware");
 
+var defaultImage = "https://soliloquywp.com/wp-content/uploads/2016/08/How-to-Set-a-Default-Featured-Image-in-WordPress.png";
+var showdown = require('showdown');
+var converter = new showdown.Converter()
+
+// Outputs: <h1>Remarkable rulezz!</h1>
 router.get("/blogs", function(req, res){
   Blog.find({}, function(error, blogs){
     if(error){
@@ -25,7 +30,9 @@ router.post("/blogs",middleware.isLoggedIn, function(req, res){
     username: req.user.username
   };
   req.body.blog.author = author;
+  req.body.blog.body = converter.makeHtml(req.body.blog.body);
   req.body.blog.body = req.sanitize(req.body.blog.body);
+  if(req.body.blog.image=="") req.body.blog.image = defaultImage;
   Blog.create(req.body.blog, function(error, newBlog){
     if(error){
       res.render("/blogs/new");
@@ -61,7 +68,9 @@ router.get("/blogs/:id/edit",middleware.whoOwns, function(req, res){
   });
 
 router.put("/blogs/:id",middleware.whoOwns, function(req, res){
+  req.body.blog.body = converter.makeHtml(req.body.blog.body);
   req.body.blog.body = req.sanitize(req.body.blog.body);
+  if(req.body.blog.image=="") req.body.blog.image = defaultImage;
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(error, updatedBlog){
     if(error){
       req.flash("error", "Blog Not Found!!");

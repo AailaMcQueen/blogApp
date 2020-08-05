@@ -13,7 +13,7 @@ var rules={
 
 
 router.get("/register", function(req, res){
-  req.flash("error", "Sign Up function is disabled!")
+  req.flash("error", "Sign Up function is disabled due to small server size!")
   res.redirect("/blogs");
 });
 

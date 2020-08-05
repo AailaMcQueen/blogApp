@@ -9,7 +9,7 @@
       <input type="text" name="blog[title]" placeholder="Title">
     </div>
     <div class="field">
-      <label>Image URL</label>
+      <label>Image URL(Optional)</label>
       <input type="text" name="blog[image]" placeholder="Image URL">
     </div>
     <div class="field">
@@ -24,9 +24,11 @@
       <button type="submit" class="ui positive button">Post</button>
     </div>
     <div class="description" style="padding-top: 5px;">
-      <strong>Note: </strong>Image Upload and Video Embedding in Blog Content Container is not functional yet!!
+      <strong>Note: </strong><ul>
+        <li>*supports Markdown Language!</li>
+        <li>*supports HTML tags like strong, p, br etc.</li>
+      </ul>
     </div>
   </form>
 </div>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 <% include ./partials/footer %>
