@@ -10,8 +10,7 @@ var blogRoutes = require("./routes/blogs"),
 commentRoutes =require("./routes/comments"),
 indexRoutes = require("./routes/index");
 
-//mongoose.connect("mongodb://127.0.0.1:27017/blogApp", {useNewUrlParser: true});
-mongoose.connect("mongodb+srv://adminshahrukh:jadara@123@blogapp-dvjwl.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb://127.0.0.1:27017/blogApp", {useNewUrlParser: true});
 var bodyParser= require("body-parser");
 app.use(flash());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -54,4 +53,3 @@ app.use(indexRoutes);
 app.get("/", function(req, res){
   res.redirect("/blogs");
 });
-//auth routes

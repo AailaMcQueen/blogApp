@@ -13,7 +13,8 @@ var rules={
 
 
 router.get("/register", function(req, res){
-  res.render("register", {rules: rules});
+  req.flash("error", "Sign Up function is disabled!")
+  res.redirect("/blogs");
 });
 
 router.post("/register", function(req, res){
