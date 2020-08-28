@@ -1,5 +1,6 @@
 # blogApp
-A Blog App From Scratch Using Libraries like Semantic-UI and based on Express Framework
+A website to post daily Blogs! It is Basic HTML5, CSS with Semantic UI in front-end and Node.js with Express.js framework and MongoDB in back-end. It is a work in progress where I add things regularly.
+Visit here: https://tcwiz-blogs.herokuapp.com
 #
 Some Functions are not working yet, or are disabled intentionally.
 If you're here to help, you're welcome.
